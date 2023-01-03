@@ -2,6 +2,7 @@ import {supported} from '@mapbox/mapbox-gl-supported';
 import packageJSON from '../package.json' assert {type: 'json'};
 import Map from './ui/map';
 import NavigationControl from './ui/control/navigation_control';
+import NavControl from './ui/control/nav_control';
 import GeolocateControl from './ui/control/geolocate_control';
 import AttributionControl from './ui/control/attribution_control';
 import LogoControl from './ui/control/logo_control';
@@ -43,6 +44,7 @@ const exported = {
     getRTLTextPluginStatus,
     Map,
     NavigationControl,
+    NavControl,
     GeolocateControl,
     AttributionControl,
     LogoControl,
@@ -142,6 +144,23 @@ const exported = {
     set maxParallelImageRequests(numRequests: number) {
         config.MAX_PARALLEL_IMAGE_REQUESTS = numRequests;
     },
+
+    get accessToken(): string {
+        return config.ACCESS_TOKEN;
+    },
+
+    set accessToken(token: string) {
+        config.ACCESS_TOKEN = token;
+    },
+
+    get baseApiUrl(): string {
+        return config.API_URL;
+    },
+
+    set baseApiUrl(url: string) {
+        config.API_URL = url;
+    },
+
 
     /**
      * Clears browser storage used by this library. Using this method flushes the MapLibre tile

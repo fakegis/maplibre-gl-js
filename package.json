@@ -170,7 +170,14 @@
     "benchmark": "ts-node test/bench/run-benchmarks.ts",
     "gl-stats": "ts-node test/bench/gl-stats.ts",
     "postinstall": "node ./postinstall.js",
-    "typecheck": "tsc --project tsconfig.typecheck.json"
+    "typecheck": "tsc --project tsconfig.typecheck.json",
+    "start-debug": "run-p watch-css watch-dev start-server",
+    "build-prod-mapabc": "rollup --configPlugin @rollup/plugin-typescript -c --environment BUILD:production,MAPABC:true --bundleConfigAsCjs",
+    "start-mapabc": "run-p watch-css-mapabc watch-dev-mapabc start-server",
+    "build-css-mapabc": "postcss -o dist/mapabc-gl.css src/css/mapabc-gl.css",
+    "watch-css-mapabc": "postcss --watch -o dist/mapabc-gl.css src/css/mapabc-gl.css",
+    "watch-dev-mapabc": "rollup --configPlugin @rollup/plugin-typescript -c --environment BUILD:dev,MAPABC:true --watch --bundleConfigAsCjs",
+    "start-debug-mapabc": "run-p watch-css-mapabc watch-dev-mapabc start-server"
   },
   "files": [
     "build/",

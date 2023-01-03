@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MapLibre GL JS debug page</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='../../../dist/mapabc-gl.css'/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id='map'></div>
+
+<script src='../../../dist/mapabc-gl-dev.js'></script>
+<script src='js/mapabc-config.js'></script>
+
+<script>
+      mapabcgl.accessToken = 'ec85d3648154874552835438ac6a02b2';
+    var map = window.map = new mapabcgl.Map({
+        container: 'map',
+        center: [116.2569, 39.9232],
+        zoom: 10,
+        //style: 'mapabc79w.json',
+        style: 'mapabc://styles/mapabc79w',
+        hash: true,
+      //  accessToken: 'ec85d3648154874552835438ac6a02b2' //map options
+
+    })
+
+
+    map.on('click', function (e) {
+        console.log(e)
+        const features = map.queryRenderedFeatures(e.point, {filter: ["==", "$type", "Polygon"]});
+        console.log(features)
+        e.preventDefault();
+    })
+
+
+</script>
+</body>
+</html>
